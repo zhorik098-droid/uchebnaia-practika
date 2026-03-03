@@ -1,0 +1,20 @@
+@{
+    var type = TempData["AlertType"] as string;
+    var title = TempData["AlertTitle"] as string;
+    var message = TempData["AlertMessage"] as string;
+
+    if (!string.IsNullOrWhiteSpace(message))
+    {
+        var css = type switch
+        {
+            "error" => "alert error",
+            "warning" => "alert warning",
+            "info" => "alert info",
+            _ => "alert info"
+        };
+<div class="@css">
+    <div class="alert-title">@(!string.IsNullOrWhiteSpace(title) ? title : "Сообщение")</div>
+    <div class="alert-text">@message</div>
+</div>
+    }
+}

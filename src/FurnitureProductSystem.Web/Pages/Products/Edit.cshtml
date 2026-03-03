@@ -1,0 +1,62 @@
+@page "{id:int?}"
+@model FurnitureProductSystem.Web.Pages.Products.EditModel
+@{
+    ViewData["Title"] = Model.IsEdit ? "Редактирование продукта" : "Добавление продукта";
+}
+
+<div class="grid">
+    <div class="col-8">
+        <div class="card">
+            <div class="h1">@ViewData["Title"]</div>
+            <div class="muted">Поля: артикул, тип, наименование, минимальная стоимость, основной материал.</div>
+
+            @if (!string.IsNullOrWhiteSpace(Model.ErrorText))
+            {
+                <div class="card" style="margin-top:12px; border-color: rgba(252,165,165,.35); background: rgba(127,29,29,.18);">
+                    <b>Ошибка</b><div class="muted">@Model.ErrorText</div>
+                </div>
+            }
+
+            <form method="post" style="margin-top:10px;">
+                <label asp-for="Input.Article"></label>
+                <input class="input" asp-for="Input.Article" />
+                <span class="validation" asp-validation-for="Input.Article"></span>
+
+                <label asp-for="Input.ProductTypeId"></label>
+                <select asp-for="Input.ProductTypeId" asp-items="Model.ProductTypeOptions"></select>
+                <span class="validation" asp-validation-for="Input.ProductTypeId"></span>
+
+                <label asp-for="Input.Name"></label>
+                <input class="input" asp-for="Input.Name" />
+                <span class="validation" asp-validation-for="Input.Name"></span>
+
+                <label asp-for="Input.MinPartnerCost"></label>
+                <input class="input" asp-for="Input.MinPartnerCost" />
+                <span class="validation" asp-validation-for="Input.MinPartnerCost"></span>
+
+                <label asp-for="Input.MaterialTypeId"></label>
+                <select asp-for="Input.MaterialTypeId" asp-items="Model.MaterialTypeOptions"></select>
+                <span class="validation" asp-validation-for="Input.MaterialTypeId"></span>
+
+                <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap;">
+                    <button class="btn" type="submit">Сохранить</button>
+                    <a class="btn secondary" asp-page="/Products/Index">Назад</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="col-4">
+        <div class="card">
+            <div class="h1" style="font-size:20px; margin-top:0;">Подсказка</div>
+            <div class="muted">
+                Стоимость хранится с точностью до сотых и не может быть отрицательной.
+                Проверка уникальности артикула по заданию не требуется.
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

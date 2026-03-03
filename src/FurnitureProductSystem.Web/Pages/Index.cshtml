@@ -1,0 +1,13 @@
+@page
+@model FurnitureProductSystem.Web.Pages.IndexModel
+@{
+    ViewData["Title"] = "Главная";
+}
+
+<div class="card">
+    <div class="h1">Подсистема работы с продукцией</div>
+    <div class="muted">Список продукции, добавление/редактирование, просмотр цехов и расчёт времени изготовления.</div>
+    <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap;">
+        <a class="btn" asp-page="/Products/Index">Открыть список продукции</a>
+    </div>
+</div>

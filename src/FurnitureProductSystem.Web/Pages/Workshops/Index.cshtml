@@ -1,0 +1,67 @@
+@page "{productId:int}"
+@model FurnitureProductSystem.Web.Pages.Workshops.IndexModel
+@{
+    ViewData["Title"] = "Цеха";
+}
+
+<div class="card">
+    <div class="h1">Цеха для продукта</div>
+    <div class="muted">@Model.ProductTitle</div>
+
+    <div class="card" style="margin-top:14px; padding:14px;">
+        <div class="h2" style="margin:0 0 10px 0;">Добавить цех</div>
+
+        <form method="post" asp-page-handler="Add" asp-route-productId="@RouteData.Values["productId"]">
+            <div class="grid" style="grid-template-columns: 1.4fr 0.8fr 0.8fr auto; gap:10px; align-items:end;">
+                <div>
+                    <label class="label">Название цеха</label>
+                    <input class="input" asp-for="NewWorkshopName" placeholder="Например: Сборочный" />
+                </div>
+                <div>
+                    <label class="label">Кол-во человек</label>
+                    <input class="input" asp-for="NewPeopleCount" type="number" min="0" />
+                </div>
+                <div>
+                    <label class="label">Время на изделие (мин)</label>
+                    <input class="input" asp-for="NewMinutes" type="number" min="0" />
+                </div>
+                <div>
+                    <button class="btn" type="submit">Добавить</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div style="margin-top:14px; overflow:auto;">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Название цеха</th>
+                <th>Кол-во человек</th>
+                <th>Время на изделие</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var w in Model.Rows)
+            {
+                <tr>
+                    <td>@w.WorkshopName</td>
+                    <td>@w.PeopleCount</td>
+                    <td>@w.Minutes мин</td>
+                    <td style="text-align:right; white-space:nowrap;">
+                        <form method="post" asp-page-handler="Delete" asp-route-productId="@RouteData.Values["productId"]" style="display:inline;">
+                            <input type="hidden" name="productWorkshopId" value="@w.ProductWorkshopId" />
+                            <button class="btn danger" type="submit">Удалить</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+
+    <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap;">
+        <a class="btn secondary" asp-page="/Products/Index">Назад к продукции</a>
+    </div>
+</div>

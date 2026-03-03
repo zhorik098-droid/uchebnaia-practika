@@ -1,0 +1,52 @@
+@page
+@model FurnitureProductSystem.Web.Pages.Products.IndexModel
+@{
+    ViewData["Title"] = "Список продукции";
+}
+
+<div class="grid">
+    <div class="col-12">
+        <div class="card">
+            <div style="display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;">
+                <div>
+                    <div class="h1">Список продукции</div>
+                    <div class="muted">Данные из БД. Время изготовления – сумма времени по цехам.</div>
+                </div>
+                <a class="btn" asp-page="/Products/Edit">+ Добавить продукт</a>
+            </div>
+
+            <div style="margin-top:14px; overflow:auto;">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Артикул</th>
+                            <th>Тип</th>
+                            <th>Наименование</th>
+                            <th>Материал</th>
+                            <th>Мин. стоимость</th>
+                            <th>Время изготовления</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (var row in Model.Rows)
+                    {
+                        <tr>
+                            <td>@row.Article</td>
+                            <td>@row.ProductType</td>
+                            <td>@row.Name</td>
+                            <td>@row.Material</td>
+                            <td>@row.MinPartnerCost.ToString("0.00")</td>
+                            <td>@row.TotalMinutes мин</td>
+                            <td style="white-space:nowrap;">
+                                <a class="btn secondary" asp-page="/Products/Edit" asp-route-id="@row.Id">Редактировать</a>
+                                <a class="btn secondary" asp-page="/Workshops/Index" asp-route-productId="@row.Id">Цеха</a>
+                            </td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
