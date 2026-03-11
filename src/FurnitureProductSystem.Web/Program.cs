@@ -14,10 +14,10 @@ builder.Services.AddScoped<RawMaterialCalculator>();
 
 var app = builder.Build();
 
-// Ensure DB folder exists
+// Убедитесь, что папка базы данных существует
 Directory.CreateDirectory(Path.Combine(app.Environment.ContentRootPath, "App_Data"));
 
-// Auto-create and seed DB (for demo/exam tasks)
+// Автоматическое создание и заполнение базы данных
 using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();

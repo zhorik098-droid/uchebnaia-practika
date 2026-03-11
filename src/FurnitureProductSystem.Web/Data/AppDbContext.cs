@@ -16,7 +16,7 @@ public sealed class AppDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
-
+        ///модель
         modelBuilder.Entity<Product>(e =>
         {
             e.HasKey(x => x.Id);

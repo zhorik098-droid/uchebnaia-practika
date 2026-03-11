@@ -19,7 +19,7 @@ public sealed class Product
     public int ProductTypeId { get; set; }
     public ProductType? ProductType { get; set; }
 
-    [Display(Name = "Материал")]
+    [Display(Name = "Mатериал")]
     public int MaterialTypeId { get; set; }
     public MaterialType? MaterialType { get; set; }
 

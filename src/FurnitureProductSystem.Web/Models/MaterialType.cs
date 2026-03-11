@@ -9,7 +9,7 @@ public sealed class MaterialType
     [Required, StringLength(150)]
     public string Name { get; set; } = string.Empty;
 
-    // Used in Module 4 method (raw material calculation)
+    // расчет сырья
     public decimal LossPercent { get; set; }
 
     public List<Product> Products { get; set; } = new();

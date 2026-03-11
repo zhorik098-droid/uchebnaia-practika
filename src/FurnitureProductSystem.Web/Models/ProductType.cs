@@ -9,7 +9,7 @@ public sealed class ProductType
     [Required, StringLength(150)]
     public string Name { get; set; } = string.Empty;
 
-    // Used in Module 4 method (raw material calculation)
+    // расчет сырья
     public decimal Coefficient { get; set; }
 
     public List<Product> Products { get; set; } = new();

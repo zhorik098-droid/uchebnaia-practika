@@ -13,8 +13,8 @@ public sealed class ProductTimeService
     }
 
     /// <summary>
-    /// Calculates total manufacturing time (minutes) as sum of time spent in all workshops for the product.
-    /// Returns 0 if there are no linked workshops.
+    /// Возвращает общее время изготовления продукции
+    /// как сумму времени по всем связанным цехам.
     /// </summary>
     public async Task<int> GetTotalMinutesAsync(int productId)
     {

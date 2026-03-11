@@ -7,13 +7,13 @@ public static class DbInitializer
 {
     public static void Seed(AppDbContext db, string contentRootPath)
     {
-        // If DB already has data – do nothing.
+        // Если в базе данных уже есть данные – ничего не делайте.
         if (db.ProductTypes.Any() || db.MaterialTypes.Any() || db.Products.Any())
         {
             return;
         }
 
-        // Try to import from provided Excel resources (files with "import")
+        // Попробуйте выполнить импорт из предоставленных ресурсов Excel (файлы с надписью "импорт").
         var importDir = Path.Combine(contentRootPath, "Data", "Import");
         var ptPath = Path.Combine(importDir, "Product_type_import.xlsx");
         var mtPath = Path.Combine(importDir, "Material_type_import.xlsx");
@@ -27,7 +27,7 @@ public static class DbInitializer
             return;
         }
 
-        // Fallback demo seed (in case Excel files are missing)
+        // Резервная демонстрационная версия (на случай отсутствия файлов Excel)
         SeedDemo(db);
     }
 
